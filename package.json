@@ -1,11 +1,11 @@
 {
-  "name": "robotslacker",
+  "name": "FRC Team 4342 Slack Integrations",
   "version": "1.0.0",
   "description": "Slack integrations for Demon Robotics",
   "main": "manager.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Jose Roman",
   "license": "ISC"
 }
