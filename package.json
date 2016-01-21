@@ -1,5 +1,5 @@
 {
-  "name": "FRC Team 4342 Slack Integrations",
+  "name": "FRC-Team-4342-Slack-Integrations",
   "version": "1.0.0",
   "description": "Slack integrations for Demon Robotics",
   "main": "manager.js",
