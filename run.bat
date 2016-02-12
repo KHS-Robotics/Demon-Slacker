@@ -1,1 +1,2 @@
 node manager.js
+exit

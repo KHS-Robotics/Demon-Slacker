@@ -23,7 +23,7 @@ function checkForDifference(){
           var title = data.team_updates[difference[i].path[1]].title;
           var url = data.team_updates[difference[i].path[1]].url;
 
-          var message = title + " has been updated " + url;
+          var message = "@channel: " + title + " has been posted - " + url;
 
           slacker.sendMessage(message) //Send Message to Slack
         }
