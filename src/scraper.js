@@ -1,26 +1,22 @@
 var request = require('request-promise');
 var cheerio = require('cheerio');
+var config = require("./config.json")
 
-
-function extractDate(str){
-
+function extractDate(str) {
   var date = str.substring(str.lastIndexOf("d") + 1,str.lastIndexOf(")")).trim();
 
   return date;
-
 };
 
 var options = {
-    uri: 'http://www.firstinspires.org/resource-library/frc/competition-manual-qa-system',
+    uri: config.updatesUri,
     transform: function (body) {
         return cheerio.load(body);
     }
 };
 
-module.exports = {
-
-  getLatestTeamUpdates: function(callback){
-
+var scraper = {
+  getLatestTeamUpdates: function(callback) {
     var result = [];
 
     request(options)
@@ -36,12 +32,13 @@ module.exports = {
 
          });
 
-         callback(null, JSON.parse(JSON.stringify({"team_updates": result })) );
-
+         callback(null, JSON.parse(JSON.stringify({"team_updates": result })));
        })
        .catch(function(err) {
          console.log("Something went wrong: " + err);
+         callback(err, null);
        });
   }
+}
 
-}; //End Module Export
+module.exports = scraper;

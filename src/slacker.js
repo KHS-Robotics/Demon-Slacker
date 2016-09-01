@@ -1,6 +1,7 @@
 var Slack = require('slack-node');
+var config = require("./config.json");
 
-webhookUri = "";
+webhookUri = config.slack.webhookUri;
 
 slack = new Slack();
 slack.setWebhook(webhookUri);

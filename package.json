@@ -1,19 +1,28 @@
 {
-  "name": "FRC-Team-4342-Slack-Integrations",
+  "name": "game updates slack notifier",
   "version": "1.0.0",
-  "description": "Slack integrations for Demon Robotics",
-  "main": "manager.js",
+  "license": "MIT",
+  "author": "FRC Team 4342",
+  "description": "Sends a payload to a Slack Webhook about an update to the FRC game manual",
+  "homepage": "https://github.com/KHS-Robotics/Game-Updates-Slack-Notifier",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KHS-Robotics/Game-Updates-Slack-Notifier.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KHS-Robotics/Game-Updates-Slack-Notifier/issues",
+    "email": "demonrobotics@gmail.com"
+  },
+  "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jose Roman",
-  "license": "ISC",
   "dependencies" : {
-    "underscore": ">=1.8.3",
-    "deep-diff": ">=0.3.3 ",
-    "request-promise": ">=2.0.0",
-    "cheerio": ">=0.19.0",
-    "slack-node": ">=0.1.7 ",
-    "winston": ">=2.1.1 "
+    "underscore": "^1.8.3",
+    "deep-diff": "^0.3.3 ",
+    "request-promise": "^2.0.0",
+    "cheerio": "^0.19.0",
+    "slack-node": "^0.1.7"
   }
 }

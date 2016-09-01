@@ -1,2 +1,0 @@
-node manager.js
-exit

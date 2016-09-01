@@ -1,0 +1,6 @@
+{
+    "updatesUri": "http://www.firstinspires.org/resource-library/frc/competition-manual-qa-system",
+    "slack": {
+        "webhookUri": ""
+    }
+}
