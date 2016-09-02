@@ -1,6 +1,6 @@
 var request = require('request-promise');
 var cheerio = require('cheerio');
-var config = require("./config.json")
+var config = require("../config.json")
 
 function extractDate(str) {
   var date = str.substring(str.lastIndexOf("d") + 1,str.lastIndexOf(")")).trim();

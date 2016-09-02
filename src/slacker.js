@@ -1,5 +1,5 @@
 var Slack = require('slack-node');
-var config = require("./config.json");
+var config = require("../config.json");
 
 webhookUri = config.slack.webhookUri;
 
@@ -8,7 +8,7 @@ slack.setWebhook(webhookUri);
 
 module.exports = {
 
-  sendMessage: function(text){
+  sendMessage: function(text) {
 
     slack.webhook({ text: text }, function(err, response) {
       if (err) return console.log(err);
