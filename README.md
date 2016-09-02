@@ -4,8 +4,8 @@ Automatically notify your team about an update to the game manual. All you need 
 
 ## To work on this project
 ```
-    $ git clone https://github.com/KHS-Robotics/Game-Updates-Slack-Notifier.git
-    $ cd Game-Updates-Slack-Notifier
+    $ git clone https://github.com/KHS-Robotics/Game-Updates-Slack-Integration.git
+    $ cd Game-Updates-Slack-Integration
     $ npm install
 ```
 
