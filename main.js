@@ -14,7 +14,7 @@ function checkForDifference() {
 
   scraper.getLatestTeamUpdates(config.updatesUri, function(err, data) {
 
-    if( _.isEqual(data, localUpdates) !== true ) {
+    if(!_.isEqual(data, localUpdates)) {
 
       var difference = diff(data, localUpdates);
 
