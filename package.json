@@ -1,16 +1,16 @@
 {
-  "name": "game updates slack notifier",
+  "name": "game updates slack integration",
   "version": "1.0.0",
   "license": "MIT",
   "author": "FRC Team 4342",
-  "description": "Sends a payload to a Slack Webhook about an update to the FRC game manual",
-  "homepage": "https://github.com/KHS-Robotics/Game-Updates-Slack-Notifier",
+  "description": "Slack Webhook Integration - Sends a payload to a Slack Webhook about an update to the FRC game manual",
+  "homepage": "https://github.com/KHS-Robotics/Game-Updates-Slack-Integration",
   "repository": {
     "type": "git",
-    "url": "https://github.com/KHS-Robotics/Game-Updates-Slack-Notifier.git"
+    "url": "https://github.com/KHS-Robotics/Game-Updates-Slack-Integration.git"
   },
   "bugs": {
-    "url": "https://github.com/KHS-Robotics/Game-Updates-Slack-Notifier/issues",
+    "url": "https://github.com/KHS-Robotics/Game-Updates-Slack-Integration/issues",
     "email": "demonrobotics@gmail.com"
   },
   "main": "main.js",
