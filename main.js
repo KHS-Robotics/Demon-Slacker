@@ -5,11 +5,14 @@ var fs = require('fs');
 var _ = require('underscore');
 var diff = require('deep-diff');
 
+var config = require("./config.json");
 var localUpdates = require("./data/LatestTeamUpdates.json");
+
+slacker.setWebhookUri(config.slack.webhookUri)
 
 function checkForDifference() {
 
-  scraper.getLatestTeamUpdates(function(err, data) {
+  scraper.getLatestTeamUpdates(config.updatesUri, function(err, data) {
 
     if( _.isEqual(data, localUpdates) !== true ) {
 
