@@ -3,6 +3,6 @@
     "updatesUri": "http://www.firstinspires.org/resource-library/frc/competition-manual-qa-system",
     // put your team's Slack integration information here
     "slack": {
-        "webhookUri": "my.slack.webookuri.com"
+        "webhookUri": "https://hooks.slack.com/services/RestOfUrlHere"
     }
 }
