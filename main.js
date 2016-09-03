@@ -8,7 +8,7 @@ var diff = require('deep-diff');
 var config = require("./config.json");
 var localUpdates = require("./data/LatestTeamUpdates.json");
 
-slacker.setWebhookUri(config.slack.webhookUri)
+slacker.setWebhookUri(config.slack.webhookUri);
 
 function checkForDifference() {
 
