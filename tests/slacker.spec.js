@@ -1,3 +1,3 @@
-describe("Slacker", function() {
+describe("slacker", function() {
     
 });

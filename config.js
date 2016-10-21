@@ -1,5 +1,10 @@
 var config = {
     /*
+     * debug: used to direct the logger to either
+     * the console (false) or a log file (true)
+    */
+    debug: false,
+    /*
      * runForever: tells the program to run forever 
     */
     runForever: false,

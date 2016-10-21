@@ -1,4 +1,4 @@
-var getLatestTeamUpdates = require("./src/getLatestTeamUpdates");
+var getLatestTeamUpdates = require("./src/getLatestUpdates");
 var Slacker = require("./src/slacker");
 var fs = require("fs");
 
@@ -7,6 +7,14 @@ var diff = require("deep-diff");
 
 var config = require("./config");
 var localUpdates = require("./data/LatestTeamUpdates.json");
+
+var winston = require("winston");
+if(config.debug) {
+  winston.level = "debug";
+} else {
+  winston.add(winston.transports.File, { filename: "./data/logs.log" });
+  winston.remove(winston.transports.Console);
+}
 
 var slacker = new Slacker(config.webhookUri);
 
@@ -30,7 +38,7 @@ function checkForDifference() {
 
           slacker.sendMessage(message, function(err, response) {
             if(err) {
-              console.err("Unexpected error occurred while sending message to Slack :: response = " + response);
+              winston.error("Unexpected error occurred while sending message to Slack", { response: response, error: err });
             }
           });
         }
@@ -45,34 +53,34 @@ function checkForDifference() {
 
           slacker.sendMessage(message, function(err, response) {
             if(err) {
-              console.err("Unexpected error occurred while sending message to Slack :: response = " + response);
+              winston.error("Unexpected error occurred while sending message to Slack", { response: response, error: err});
             }
           });
         }
       }
 
-      console.log("Difference: " + difference);
+      winston.log("Difference: " + difference);
 
       // Lastly, save the new data in LatestTeamUpdates.json file
       fs.writeFile("./data/LatestTeamUpdates.json", JSON.stringify(data), function (err) {
         if (err) {
-          return console.err("Unexpected error occurred while writing updated data" + err);
+          winston.error("Unexpected error occurred while writing updated data", { error: err });
         }
       });
 
       if(config.runForever) {
-        console.log("Will check again in " + config.sleepMinutes + " minutes");
+        winston.log("Will check again in " + config.sleepMinutes + " minutes");
       } else {
-        console.log("Done");
+        winston.log("Done");
       }
     }
   });
 };
 
 if(config.runForever) {
-  console.log("Checking for game updates every " + config.sleepMinutes + " minutes...")
+  winston.log("Checking for game updates every " + config.sleepMinutes + " minutes...")
   setTimeout(checkForDifference, config.sleepMinutes*1000);
 } else {
-  console.log("Checking for game updates...");
+  winston.log("Checking for game updates...");
   checkForDifference();
 }
