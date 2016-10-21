@@ -1,4 +1,4 @@
-var getLatestTeamUpdates = require("./src/getLatestUpdates");
+var getLatestUpdates = require("./src/getLatestUpdates");
 var Slacker = require("./src/slacker");
 var fs = require("fs");
 
@@ -6,7 +6,7 @@ var _ = require("underscore");
 var diff = require("deep-diff");
 
 var config = require("./config");
-var localUpdates = require("./data/LatestTeamUpdates.json");
+var localUpdates = require("./data/LatestGameUpdates.json");
 
 var winston = require("winston");
 if(config.debug) {
@@ -20,7 +20,7 @@ var slacker = new Slacker(config.webhookUri);
 
 function checkForDifference() {
 
-  getLatestTeamUpdates(function(err, data) {
+  getLatestUpdates(function(err, data) {
 
     if(!_.isEqual(data, localUpdates)) {
 
@@ -61,15 +61,15 @@ function checkForDifference() {
 
       winston.log("Difference: " + difference);
 
-      // Lastly, save the new data in LatestTeamUpdates.json file
-      fs.writeFile("./data/LatestTeamUpdates.json", JSON.stringify(data), function (err) {
+      // Lastly, save the new data in LatestGameUpdates.json file
+      fs.writeFile("./data/LatestGameUpdates.json", JSON.stringify(data), function (err) {
         if (err) {
           winston.error("Unexpected error occurred while writing updated data", { error: err });
         }
       });
 
       if(config.runForever) {
-        winston.log("Will check again in " + config.sleepMinutes + " minutes");
+        winston.debug("Will check again in " + config.sleepMinutes + " minutes");
       } else {
         winston.log("Done");
       }
