@@ -1,17 +1,17 @@
 var Slack = require('slack-node');
 
-var WebhookUri = undefined;
-
-var slacker = {
-  setWebhookUri: function(webhookUri) {
-    WebhookUri = webhookUri
-  },
-  sendMessage: function(message) {
-    new Slack().setWebhook(WebhookUri).webhook({ text: message }, function(err, response) {
-      if (err) 
-        return console.log(err);
-    });
-  }
+function Slacker(webhookUri) {
+  this.webhookUri = webhookUri;
 }
 
-module.exports = slacker;
+Slacker.prototype.sendMessage = function(message, callback) {
+  var slack = new Slack(this.webhookUri);
+
+  var payload = {
+    text: message
+  }
+
+  slack.webhook(payload, callback);
+}
+
+module.exports = Slacker;

@@ -1,8 +1,0 @@
-{
-    // updatesUri is here so we can quickly change the location for the new game each year
-    "updatesUri": "http://www.firstinspires.org/resource-library/frc/competition-manual-qa-system",
-    // put your team's Slack integration information here
-    "slack": {
-        "webhookUri": "https://hooks.slack.com/services/RestOfUrlHere"
-    }
-}

@@ -1,21 +1,21 @@
 {
-  "name": "game updates slack integration",
+  "name": "frc-game-updates-slack-notifer",
   "version": "1.0.0",
   "license": "MIT",
   "author": "FRC Team 4342",
-  "description": "Slack Webhook Integration - Sends a payload to a Slack Webhook about an update to the FRC game manual",
-  "homepage": "https://github.com/KHS-Robotics/Game-Updates-Slack-Integration",
+  "description": "scrapes the frc game manual updates page and sends alerts your slack team via incoming webhook",
+  "homepage": "https://github.com/KHS-Robotics/FRC-Game-Updates-Slack-Notifier",
   "repository": {
     "type": "git",
-    "url": "https://github.com/KHS-Robotics/Game-Updates-Slack-Integration.git"
+    "url": "https://github.com/KHS-Robotics/FRC-Game-Updates-Slack-Notifier.git"
   },
   "bugs": {
-    "url": "https://github.com/KHS-Robotics/Game-Updates-Slack-Integration/issues",
+    "url": "https://github.com/KHS-Robotics/FRC-Game-Updates-Slack-Notifier/issues",
     "email": "demonrobotics4342@gmail.com"
   },
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node main.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies" : {
