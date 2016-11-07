@@ -1,7 +1,8 @@
 var config = {
     /*
      * debug: used to direct the logger to either
-     * the console (false) or a log file (true)
+     * the console (true) or a log file (false)
+     * at ~/data/logs.log
     */
     debug: false,
     /*

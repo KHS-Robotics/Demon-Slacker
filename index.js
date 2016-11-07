@@ -78,8 +78,8 @@ function checkForDifference() {
 };
 
 if(config.runForever) {
-  winston.log("Checking for game updates every " + config.sleepMinutes + " minutes...")
-  setTimeout(checkForDifference, config.sleepMinutes*1000);
+  winston.log("Checking for game updates every " + config.sleepMinutes + " minutes...");
+  setTimeout(checkForDifference, config.sleepMinutes*60*1000);
 } else {
   winston.log("Checking for game updates...");
   checkForDifference();
