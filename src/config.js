@@ -1,3 +1,7 @@
+/**
+ * Default config values. This is used if checkForDifference is
+ * called without passing the 'config' parameter
+ */
 var config = {
     /*
      * debug: used to direct the logger to either
@@ -18,7 +22,12 @@ var config = {
      * webhookUri: your team's Slack incoming webhook token here.
      * Remember: Don't commmit this anywhere! Treat it as a password
     */
-    webhookUri: "https://hooks.slack.com/services/RestOfUrlHere"
+    webhookUri: "https://hooks.slack.com/services/RestOfUrlHere",
+    /**
+     * updatesPath: the file path to the JSON to compare the scraped
+     * data with
+     */
+    updatesPath: "./data/LocalUpdates.json"
 }
 
 module.exports = config;

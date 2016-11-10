@@ -13,7 +13,7 @@
     "url": "https://github.com/KHS-Robotics/FRC-Game-Updates-Slack-Notifier/issues",
     "email": "demonrobotics4342@gmail.com"
   },
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
