@@ -4,16 +4,7 @@ var _ = require("underscore");
 var diff = require("deep-diff");
 var Slack = require("slack-node");
 
-var winston = require("winston");
-
 function checkForTeamUpdates(options, callback) {
-  if(options.debug) {
-    winston.level = "debug";
-  } else {
-    winston.add(winston.transports.File, { filename: options.logPath });
-    winston.remove(winston.transports.Console);
-  }
-
   var slack = new Slack();
   slack.setWebhook(options.webhook);
 
@@ -21,7 +12,7 @@ function checkForTeamUpdates(options, callback) {
 
     if(!_.isEqual(data, options.localUpdates)) {
 
-      var difference = diff(data, options.localUpdatesPath);
+      var difference = diff(data, options.localUpdates);
 
       for (var i = 0; i < difference.length; i++) {
 
@@ -35,7 +26,7 @@ function checkForTeamUpdates(options, callback) {
 
           slack.webhook({ text: message }, function(err, response) {
             if(err) {
-              winston.error("Unexpected error occurred while sending message to Slack", { error: err });
+              console.error(err);
             }
           });
         }
@@ -50,7 +41,7 @@ function checkForTeamUpdates(options, callback) {
 
           slack.webhook({ text: message }, function(err, response) {
             if(err) {
-              winston.error("Unexpected error occurred while sending message to Slack", { response: response, error: err});
+              console.error(err);
             }
           });
         }

@@ -1,18 +1,44 @@
 # FRC Team Updates Slack Notifier
 Automatically notify your team about an update to the FRC game manual.
 
-## To work on this project
-```
-    $> git clone https://github.com/KHS-Robotics/FRC-Game-Updates-Slack-Notifier.git
-    $> cd FRC-Game-Updates-Slack-Notifier
-    $> npm install
-```
+## How it works
+The algorithm is simple, actually. First, we scrape the website for the current posted updates using [request-promise](https://www.npmjs.com/package/request-promise)
+to load the HTML from the team updates page and [cheerio](https://www.npmjs.com/package/cheerio) to traverse it. Then, we compare the traversed team updates from the page
+and the local updates saved in a JSON using [underscore](https://www.npmjs.com/package/underscore)'s `isEqual` function. If the JSON objects are different, then we 
+use [deep-diff](https://www.npmjs.com/package/deep-diff) to compare the changes. We then send the proper message to [slack](https://www.slack.com/) using 
+[slack-node](https://www.npmjs.com/package/slack-node) based on the differences in the local JSON and what we pulled from the web.
 
-## To run/use this project
-Populate the fields with the correct values in `./src/config.js` and run `$> npm start` in the root of the project.
-You can keep it running by setting `runForever` to true in `config.js` or use an external method such as Windows
-Task Scheduler.
+## Example
+```
+var fs = require("fs");
+var checkForTeamUpdates = require("frc-team-updates-slack-notifer");
 
-## What is Slack?
-Slack is a cloud-based team collaboration tool co-founded by Stewart Butterfield, Eric Costello, Cal Henderson, and Serguei Mourachov.
-To learn more, visit this website: https://slack.com/
+var runForever = false;
+var WAIT_MINUTES = 60;
+
+var options = {
+    webhook: "webhookUri", // the URI of your incoming slack webhook
+    updatesUri: "http://www.firstinspires.org/resource-library/frc/competition-manual-qa-system", // the URI with the team updates to scrape
+    localUpdates: require("./teamUpdates.json") // the local team updates, this should start off as an emply JSON object and will populate itself
+};
+
+function saveData(err, data) {
+    if(err) {
+        console.error(err);
+    }
+    
+    // Ideally you want to save the new data to a local JSON file in order for the program
+    // to know what the last updates were when the program last checked
+    fs.writeFile(localUpdatesPath, JSON.stringify(data), function(err) {
+        if(err) {
+            console.error(err);
+        }
+    })
+}
+
+if(runForever) {
+    setTimeout(checkForTeamUpdates(options, saveData), WAIT_MINUTES*1000*60);
+} else {
+    checkForTeamUpdates(options, saveData);
+}
+```

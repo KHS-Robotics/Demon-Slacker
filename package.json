@@ -1,9 +1,9 @@
 {
   "name": "frc-team-updates-slack-notifer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "author": "KHS-Robotics",
-  "description": "scrapes the frc game manual updates page and sends alerts your slack team via incoming webhook",
+  "description": "scrapes the frc game manual updates page and sends alerts to your slack team via incoming webhook",
   "homepage": "https://github.com/KHS-Robotics/FRC-Team-Updates-Slack-Notifier",
   "repository": {
     "type": "git",
@@ -22,7 +22,6 @@
     "deep-diff": "^0.3.3 ",
     "request-promise": "^2.0.0",
     "slack-node": "^0.1.7",
-    "underscore": "^1.8.3",
-    "winston": "^2.2.0"
+    "underscore": "^1.8.3"
   }
 }
