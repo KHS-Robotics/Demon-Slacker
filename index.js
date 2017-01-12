@@ -1,1 +1,1 @@
-module.exports = require("./src/checkForDifference");
+module.exports = require("./src/checkForTeamUpdates");
