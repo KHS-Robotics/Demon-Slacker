@@ -4,10 +4,12 @@ var checkForTeamUpdates = require("./src/checkForTeamUpdates");
 var runForever = false;
 var WAIT_MINUTES = 60;
 
+var localUpdatesPath = "./teamUpdates.json";
+
 var options = {
     webhook: "https://hooks.slack.com/services/your/webhook", // the URI of your incoming slack webhook
     updatesUri: "http://www.firstinspires.org/resource-library/frc/competition-manual-qa-system", // the URI with the team updates to scrape
-    localUpdates: require("./teamUpdates.json") // the local team updates, this should start off as an emply JSON object and will populate itself
+    localUpdates: require(localUpdatesPath) // the local team updates, this should start off as an emply JSON object and will populate itself
 };
 
 function saveData(err, data) {
