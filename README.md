@@ -1,4 +1,4 @@
-# FRC Game Updates Slack Notifier
+# FRC Team Updates Slack Notifier
 Automatically notify your team about an update to the FRC game manual.
 
 ## To work on this project
