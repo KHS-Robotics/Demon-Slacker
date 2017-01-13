@@ -6,7 +6,7 @@ The algorithm is simple, actually. First, we scrape the website for the current 
 to load the HTML from the team updates page and [cheerio](https://www.npmjs.com/package/cheerio) to traverse it. Then, we compare the traversed team updates from the page
 and the local updates saved in a JSON using [underscore](https://www.npmjs.com/package/underscore)'s `isEqual` function. If the JSON objects are different, then we 
 use [deep-diff](https://www.npmjs.com/package/deep-diff) to compare the changes. We then send the proper message to [slack](https://www.slack.com/) using 
-[slack-node](https://www.npmjs.com/package/slack-node) based on the differences in the local JSON and what we pulled from the web.
+[slack-node](https://www.npmjs.com/package/slack-node) based on the differences in the local JSON object and what we pulled from the web.
 
 ## Example
 ```
@@ -16,10 +16,12 @@ var checkForTeamUpdates = require("frc-team-updates-slack-notifer");
 var runForever = false;
 var WAIT_MINUTES = 60;
 
+var localUpdatesPath = "./teamUpdates.json";
+
 var options = {
     webhook: "webhookUri", // the URI of your incoming slack webhook
     updatesUri: "http://www.firstinspires.org/resource-library/frc/competition-manual-qa-system", // the URI with the team updates to scrape
-    localUpdates: require("./teamUpdates.json") // the local team updates, this should start off as an emply JSON object and will populate itself
+    localUpdates: require(localUpdatesPath) // the local team updates, this should start off as an emply JSON object and will populate itself
 };
 
 function saveData(err, data) {

@@ -8,11 +8,20 @@ function checkForTeamUpdates(options, callback) {
   var slack = new Slack();
   slack.setWebhook(options.webhook);
 
-  getLatestUpdates(options.updatesUri, function(err, data) {
+  console.log("Scraping for team updates...");
+
+  getLatestUpdates(function(err, data) {
+
+    if(err) {
+      callback(err, null);
+      return;
+    }
 
     if(!_.isEqual(data, options.localUpdates)) {
 
       var difference = diff(data, options.localUpdates);
+
+      console.log("Difference", JSON.stringify(difference));
 
       for (var i = 0; i < difference.length; i++) {
 
@@ -22,11 +31,17 @@ function checkForTeamUpdates(options, callback) {
           var title = data.team_updates[difference[i].path[1]].title;
           var url = data.team_updates[difference[i].path[1]].url;
 
+          console.log(
+            "Difference detected. Sending message to Slack", 
+            "@channel: " + title + " has been posted - " + url
+          );
+
           var message = "@channel: " + title + " has been posted - " + url;
 
           slack.webhook({ text: message }, function(err, response) {
             if(err) {
-              console.error(err);
+              callback(err, null);
+              return;
             }
           });
         }
@@ -37,18 +52,26 @@ function checkForTeamUpdates(options, callback) {
           var title = data.team_updates[0].title;
           var url = data.team_updates[0].url;
 
+          console.log(
+            "Difference detected. Sending message to Slack", 
+            "A new update has been posted - " + title + " " + url
+          );
+
           var message = "A new update has been posted - " + title + " " + url;
 
           slack.webhook({ text: message }, function(err, response) {
             if(err) {
-              console.error(err);
+              callback(err, null);
+              return;
             }
           });
         }
       }
-
-      callback(err, data);
+    } else {
+      console.log("No difference detected");
     }
+
+    callback(null, data);
   });
 };
 

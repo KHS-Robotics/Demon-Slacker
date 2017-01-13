@@ -1,9 +1,9 @@
 var request = require('request-promise');
 var cheerio = require('cheerio');
 
-var getLatestUpdates = function(uri, callback) {
+var getLatestUpdates = function(callback) {
   var options = {
-    uri: uri,
+    uri: "http://www.firstinspires.org/resource-library/frc/competition-manual-qa-system",
     transform: function(body) {
       return cheerio.load(body);
     }
