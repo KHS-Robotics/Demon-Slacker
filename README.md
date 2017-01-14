@@ -14,6 +14,12 @@ var fs = require("fs");
 var checkForTeamUpdates = require("frc-team-updates-slack-notifier");
 
 // Create a "teamUpdates.json" file in the same folder as the script
+// and put the following JSON in the file:
+//      {
+//          "team_updates": [
+//
+//          ]
+//      }
 var localUpdatesPath = "./teamUpdates.json";
 
 var options = {
