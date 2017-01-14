@@ -27,44 +27,29 @@ function checkForTeamUpdates(options, callback) {
 
       for (var i = 0; i < difference.length; i++) {
 
-        // Check for updates team updates based on date difference
-        if(difference[i].kind == "E" && difference[i].path[2] == "date") {
-
-          var title = data.team_updates[difference[i].path[1]].title;
-          var url = data.team_updates[difference[i].path[1]].url;
-
-          console.log(
-            "Difference detected. Sending message to Slack", 
-            "@channel: " + title + " has been posted - " + url
-          );
-
-          var message = "@channel: " + title + " has been posted - " + url;
-
-          slack.webhook({ text: message }, function(err, response) {
-            if(err) {
-              console.trace(err);
-            }
-          });
-        }
-
         // Check for new updates
         if(difference[i].kind == "A") {
 
-          var title = data.team_updates[0].title;
-          var url = data.team_updates[0].url;
+          var newestUpdateTitle = data.team_updates[0].title;
+          var newestUpdateUrl = data.team_updates[0].url;
+
+          var combinedUpdatesUrl = data.team_updates[1].url;
+
+          var message = "Update \"" + newestUpdateTitle + "\" has been posted (" + newestUpdateUrl + "). ";
+          message += "All of the team updates can be found at " + combinedUpdatesUrl;
 
           console.log(
-            "Difference detected. Sending message to Slack", 
-            "A new update has been posted - " + title + " " + url
+            "Difference detected. Sending message to Slack",
+            message
           );
-
-          var message = "A new update has been posted - " + title + " " + url;
 
           slack.webhook({ text: message }, function(err, response) {
             if(err) {
               console.trace(err);
             }
           });
+
+          break;
         }
       }
     } else {
