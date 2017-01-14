@@ -15,6 +15,8 @@ function checkForTeamUpdates(options, callback) {
     if(err) {
       callback(err, null);
       return;
+    } else {
+      callback(null, data);
     }
 
     if(!_.isEqual(data, options.localUpdates)) {
@@ -40,8 +42,7 @@ function checkForTeamUpdates(options, callback) {
 
           slack.webhook({ text: message }, function(err, response) {
             if(err) {
-              callback(err, null);
-              return;
+              console.trace(err);
             }
           });
         }
@@ -61,8 +62,7 @@ function checkForTeamUpdates(options, callback) {
 
           slack.webhook({ text: message }, function(err, response) {
             if(err) {
-              callback(err, null);
-              return;
+              console.trace(err);
             }
           });
         }
@@ -70,8 +70,6 @@ function checkForTeamUpdates(options, callback) {
     } else {
       console.log("No difference detected");
     }
-
-    callback(null, data);
   });
 };
 
