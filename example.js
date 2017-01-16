@@ -4,9 +4,7 @@ var checkForTeamUpdates = require("./src/checkForTeamUpdates");
 // Create a "teamUpdates.json" file in the same folder as the script
 // and put the following JSON in the file:
 //      {
-//          "team_updates": [
-//
-//          ]
+//          "team_updates": []
 //      }
 var localUpdatesPath = "./teamUpdates.json";
 
@@ -30,6 +28,7 @@ function callback(err, data, hadUpdate) {
             if(err) {
                 console.trace(err);
             } else {
+                options.localUpdates = data;
                 console.log("Saved new data", data);
             }
         });
