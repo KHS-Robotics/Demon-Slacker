@@ -29,7 +29,7 @@ function callback(err, data, hadUpdate) {
                 console.trace(err);
             } else {
                 options.localUpdates = data;
-                console.log("Saved new data", data);
+                console.log("Saved new data.");
             }
         });
     }

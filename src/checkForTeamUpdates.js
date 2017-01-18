@@ -11,7 +11,7 @@ function sendMessage(message, data, callback) {
     if(err) {
       console.trace(err);
     } else {
-      console.log("Successfully sent message");
+      console.log("Successfully sent message.");
       callback(err, data, true);
     }
   });
@@ -33,13 +33,13 @@ function checkForTeamUpdates(options, callback) {
     var localUpdates = options.localUpdates || { team_updates: [] }
 
     if(!_.isEqual(data, localUpdates)) {
-      var message = "Update \"" + data.team_updates[0].title + "\" has been posted (" + data.team_updates[0].url + "). ";
-          message += "All of the team updates can be found at " + data.team_updates[1].url;
+      var message = "Update \"" + data.team_updates[0].title + "\" has been posted: " + data.team_updates[0].url + " . ";
+          message += "All of the team updates can be found at https://firstfrc.blob.core.windows.net/frc2017/Manual/TeamUpdates/TeamUpdates-combined.pdf";
       
-      console.log("Difference detected. Sending message to Slack", message);
+      console.log("Difference detected. Sending message to Slack:", message);
       sendMessage(message, data, callback);
     } else {
-      console.log("No difference detected");
+      console.log("No difference detected.");
       callback(null, data, false);
     }
   });
