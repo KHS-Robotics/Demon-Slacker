@@ -26,9 +26,9 @@ function checkForTeamUpdates(options, callback) {
     if(err) {
       callback(err, null, false);
       return;
-    } else {
-      console.log("Data", data);
     }
+
+    console.log("Data", data);
 
     var localUpdates = options.localUpdates || { team_updates: [] }
 

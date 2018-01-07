@@ -1,36 +1,40 @@
-var fs = require("fs");
-var checkForTeamUpdates = require("./src/checkForTeamUpdates");
+(function(env) {
+    if(!env.SLACK_WEBHOOK_URL) {
+        throw Error("Please set your SLACK_WEBHOOK_URL env variable!");
+    }
+})(process.env);
 
-// Create a "teamUpdates.json" file in the same folder as the script
-// and put the following JSON in the file:
-//      {
-//          "team_updates": []
-//      }
-var localUpdatesPath = "./teamUpdates.json";
+const fs = require("fs");
+const checkForTeamUpdates = require("./src/checkForTeamUpdates");
+
+const localUpdatesPath = "./teamUpdates.json";
+if(!fs.existsSync()) {
+    let blank = {
+        team_updates: []
+    };
+
+    fs.writeFileSync(localUpdatesPath, JSON.stringify(blank));
+}
 
 var options = {
     // the URI of your incoming slack webhook
-    webhook: "https://hooks.slack.com/services/your/webhook",
-
-    // the local team updates, this should start off as a JSON object with 
-    // a team_updates property that"s an empty array and will populate itself
-    // (see ./teamUpdates.json for an example)
+    webhook: process.env.SLACK_WEBHOOK_URL,
     localUpdates: require(localUpdatesPath)
 };
 
 function callback(err, data, hadUpdate) {
     if(err) {
-        console.trace(err);
+        return console.trace(err);
     }
 
     if(hadUpdate) {
         fs.writeFile(localUpdatesPath, JSON.stringify(data), function(err) {
             if(err) {
-                console.trace(err);
-            } else {
-                options.localUpdates = data;
-                console.log("Saved new data.");
+                return console.trace(err);
             }
+
+            options.localUpdates = data;
+            console.log("Saved new data.");
         });
     }
 }
