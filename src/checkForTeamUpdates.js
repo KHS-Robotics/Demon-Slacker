@@ -1,5 +1,7 @@
 var getLatestUpdates = require("./getLatestUpdates");
 
+const YEAR = 2018;
+
 var fs = require("fs");
 var _ = require("underscore");
 
@@ -33,8 +35,8 @@ function checkForTeamUpdates(options, callback) {
     var localUpdates = options.localUpdates || { team_updates: [] }
 
     if(!_.isEqual(data, localUpdates)) {
-      var message = "Update \"" + data.team_updates[0].title + "\" has been posted: " + data.team_updates[0].url + " . ";
-          message += "All of the team updates can be found at https://firstfrc.blob.core.windows.net/frc2017/Manual/TeamUpdates/TeamUpdates-combined.pdf";
+      var message = "\"" + data.team_updates[0].title + "\" has been posted: " + data.team_updates[0].url + " . ";
+          message += "All of the team updates can be found at https://firstfrc.blob.core.windows.net/frc" + YEAR + "/Manual/TeamUpdates/TeamUpdates-combined.pdf";
       
       console.log("Difference detected. Sending message to Slack:", message);
       sendMessage(message, data, callback);
