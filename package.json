@@ -1,6 +1,7 @@
 {
   "name": "frc-team-updates-slack-notifer",
   "version": "1.2.4",
+  "private": true,
   "license": "MIT",
   "author": "KHS-Robotics",
   "description": "scrapes the frc game manual updates page and sends alerts to your slack team via incoming webhook",
