@@ -10,7 +10,7 @@ verifyEnvVars([
 const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
 const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
-const LATEST_UPDATES_KEY = process.env.LATEST_UPDATES_KEY;
+const LATEST_TEAM_UPDATE_KEY = process.env.LATEST_TEAM_UPDATE_KEY;
 const LATEST_UPDATE_CONTENT_TYPE = "application/json"
 
 // AWS S3
@@ -25,14 +25,14 @@ const s3Client = new AWS.S3({
 // Params to GET team update on S3
 const getParams = {
     Bucket: AWS_BUCKET_NAME,
-    Key : LATEST_UPDATES_KEY,
+    Key : LATEST_TEAM_UPDATE_KEY,
     ResponseContentType: LATEST_UPDATE_CONTENT_TYPE
 };
 
 // Params to PUT team update on S3
 var putParams = {
     Bucket: AWS_BUCKET_NAME,
-    Key : LATEST_UPDATES_KEY,
+    Key : LATEST_TEAM_UPDATE_KEY,
     ContentType: LATEST_UPDATE_CONTENT_TYPE
 };
 
@@ -46,7 +46,7 @@ function getLatestUpdate() {
                 if(err.statusCode === 404) {
                     console.log(
                         "Expected S3 file does not exist! Creating one with a blank JSON as its contents:",
-                        LATEST_UPDATES_KEY
+                        LATEST_TEAM_UPDATE_KEY
                     );
 
                     console.log("This might be because this is your first time executing the program.");
