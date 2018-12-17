@@ -3,7 +3,7 @@ verifyEnvVars([
     'AWS_ACCESS_KEY_ID', 
     'AWS_SECRET_ACCESS_KEY', 
     'AWS_BUCKET_NAME',
-    'LATEST_UPDATES_KEY'
+    'LATEST_TEAM_UPDATE_KEY'
 ]);
 
 // Environment Variables
