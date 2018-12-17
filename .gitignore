@@ -41,4 +41,3 @@ jspm_packages
 
 # EC2 PEM files should not be shared
 *.pem
-

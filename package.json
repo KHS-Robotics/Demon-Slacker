@@ -1,36 +1,19 @@
 {
-  "name": "frc-team-updates-slack-notifer",
-  "version": "1.2.5",
-  "private": true,
-  "license": "MIT",
-  "author": "KHS-Robotics",
-  "description": "scrapes the frc game manual updates page and sends alerts to your slack team via incoming webhook",
-  "keywords": [
-    "frc",
-    "slack",
-    "webhook",
-    "notify",
-    "updates"
-  ],
-  "homepage": "https://github.com/KHS-Robotics/FRC-Team-Updates-Slack-Notifier",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/KHS-Robotics/FRC-Team-Updates-Slack-Notifier.git"
-  },
-  "bugs": {
-    "url": "https://github.com/KHS-Robotics/FRC-Team-Updates-Slack-Notifier/issues",
-    "email": "demonrobotics4342@gmail.com"
-  },
+  "name": "frc-team-updates-slack-notifier",
+  "version": "2.0.0",
+  "description": "scrapes the frc game manual updates page and sends alerts to your slack team via incoming webhook using AWS S3 and Lambda\"",
+  "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "KHS-Robotics",
+  "license": "MIT",
+  "private": true,
   "dependencies": {
-    "cheerio": "^0.22.0",
-    "cron": "^1.4.1",
-    "dotenv": "^4.0.0",
-    "request-promise": "^2.0.0",
-    "slack-node": "^0.1.7",
+    "aws-sdk": "^2.366.0",
+    "cheerio": "^1.0.0-rc.2",
+    "request-promise": "^4.2.2",
+    "slack-node": "^0.1.8",
     "underscore": "^1.9.1"
   }
 }
