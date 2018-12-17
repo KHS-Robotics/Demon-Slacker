@@ -13,11 +13,6 @@ const AWS_BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 const LATEST_UPDATES_KEY = process.env.LATEST_UPDATES_KEY;
 const LATEST_UPDATE_CONTENT_TYPE = "application/json"
 
-// Verify team update file for S3 is JSON
-if(LATEST_UPDATES_KEY.substr(LATEST_UPDATES_KEY.lastIndexOf('.') + 1) !== 'json') {
-    throw Error('LATEST_UPDATES_KEY environment variable must end in .json!');
-}
-
 // AWS S3
 const AWS = require('aws-sdk');
 const s3Client = new AWS.S3({
