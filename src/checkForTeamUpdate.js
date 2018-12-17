@@ -15,12 +15,10 @@ function checkForTeamUpdates() {
   console.log("Scraping for team update...");
 
   getLatestUpdate()
-    .catch(err => console.error("Error while web scraping.", err))
     .then(scraped => {
       console.log("Scraped update: ", scraped);
       
       s3Client.getLatestUpdate()
-        .catch(err => console.error("Error while getting latest update on S3.", err))
         .then(updateOnS3 => {
           console.log("S3 update: ", updateOnS3);
 
@@ -34,21 +32,22 @@ function checkForTeamUpdates() {
             var message = "\"" + scraped.team_updates[0].title + "\" has been posted: " + scraped.team_updates[0].url + " . ";
             message += "All of the team updates can be found at https://firstfrc.blob.core.windows.net/frc" + YEAR + "/Manual/TeamUpdates/TeamUpdates-combined.pdf";
         
-            console.log("Sending message to Slack:", message);
-            sendSlackMessage(message)
-              .catch(err => console.error("Error while sending message to Slack.", err))
-              .then(response => {
-                console.log("Successfully sent message to Slack.", response);
-              });
-
+            console.log("Putting latest team update to S3.");
             s3Client.putLatestUpdate(scraped)
-              .catch(err => console.error("Error while putting latest update to S3.", err))
-              .then(response => console.log("Successfully updated latest update on S3.", response));
+              .then(response => {
+                console.log("Sending message to Slack:", message);
+                sendSlackMessage(message)
+                  .then(response => console.log("Successfully sent message to Slack.", response))
+                  .catch(err => console.error("Error while sending message to Slack.", err));
+              })
+              .catch(err => console.error("Error while putting latest team update to S3. NOT sending to Slack.", err));
           } else {
             console.log("No team update detected.");
           }
-        });
-    });
+        })
+        .catch(err => console.error("Error while getting latest update on S3.", err));
+    })
+    .catch(err => console.error("Error while web scraping.", err));
 };
 
 module.exports = checkForTeamUpdates;

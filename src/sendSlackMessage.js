@@ -24,10 +24,12 @@ function sendMessage(message) {
                 return reject(err);
             }
 
-            return resolve({
-                status: response.status, 
+            let retval = {
+                status: response.status,
                 statusCode: response.statusCode
-            });
+            };
+
+            return response.statusCode < 400 ? resolve(retval) : reject(retval);
         });
     });
 }
