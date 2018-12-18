@@ -14,6 +14,8 @@ const options = {
  */
 function getLatestUpdates() {
   return new Promise((resolve, reject) => {
+    console.log("Scraping for team update.");
+    
     var results = [];
   
     request(options)

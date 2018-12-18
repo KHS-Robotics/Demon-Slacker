@@ -56,7 +56,7 @@ function getLatestUpdate() {
                         .then(response => resolve(blank))
                         .catch(err => console.error("Failed to upload blank update to S3.", err));
                 }
-
+                
                 return reject(err);
             }
 
