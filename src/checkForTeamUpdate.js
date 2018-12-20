@@ -16,16 +16,16 @@ function checkForTeamUpdates() {
     getLatestUpdate()
       .then(scraped => {
         console.log("Scraped update: ", scraped);
+
+        if(scraped.team_updates.length === 0) {
+          return reject({
+            message: "Scraped team update is empty!\nPerhaps team updates aren't up yet?"
+          });
+        }
         
         s3Client.getLatestUpdate()
           .then(updateOnS3 => {
             console.log("S3 update: ", updateOnS3);
-
-            if(scraped.team_updates.length === 0) {
-              return reject({
-                message: "Scraped team update is empty!\nPerhaps team updates aren't up yet?"
-              });
-            }
 
             if(_.isEqual(scraped, updateOnS3)) {
               console.log("No New Team Update Detected.");
