@@ -1,14 +1,11 @@
+'use strict';
+
 const checkForTeamUpdate = require('./src/checkForTeamUpdate');
 checkForTeamUpdate()
-    .then(updateDetected => {
-        if(!updateDetected) {
-            console.log("No Team Update Detected.");
-        }
-    })
-    .catch(x => {
-        console.error(x.message);
+    .catch(err => {
+        console.error(err.message);
 
-        if(x.error) {
-            console.error(x.error);
+        if(err.error) {
+            console.error(err.error);
         }
     });

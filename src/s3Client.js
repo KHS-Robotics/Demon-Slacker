@@ -54,7 +54,7 @@ function getLatestUpdate() {
                     let blank = { team_updates:[] };
                     return putLatestUpdate(blank)
                         .then(response => resolve(blank))
-                        .catch(err => console.error("Failed to upload blank update to S3.", err));
+                        .catch(err => reject(err));
                 }
                 
                 return reject(err);
