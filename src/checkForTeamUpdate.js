@@ -18,21 +18,21 @@ function checkForTeamUpdates() {
         console.log("Scraped update: ", scraped);
 
         if(scraped.team_updates.length === 0) {
-          return reject({
-            message: "Scraped team update is empty!\nPerhaps team updates aren't up yet?"
-          });
+          return reject(
+            new Error("Scraped team update is empty! Perhaps team updates aren't up yet?")
+          );
         }
         
         s3Client.getLatestUpdate()
           .then(updateOnS3 => {
-            console.log("S3 update: ", updateOnS3);
+            console.log("S3 update:", updateOnS3);
 
             if(_.isEqual(scraped, updateOnS3)) {
-              console.log("No New Team Update Detected.");
+              console.log("No new team update detected.");
               return resolve(false);
             }
 
-            console.log("New Team Update Detected!");
+            console.log("New team update detected!");
 
             var message = "\"" + scraped.team_updates[0].title + "\" has been posted: " + scraped.team_updates[0].url + " . ";
             message += "All of the team updates can be found at https://firstfrc.blob.core.windows.net/frc" + YEAR + "/Manual/TeamUpdates/TeamUpdates-combined.pdf";
@@ -46,25 +46,25 @@ function checkForTeamUpdates() {
                     console.log("Successfully sent message to Slack.", response);
                     return resolve(true);
                   })
-                  .catch(err => reject({
-                    message: "Error while sending message to Slack.", 
-                    error: err
-                  }));
+                  .catch(err => {
+                    console.error("Error while sending message to Slack.");
+                    return reject(err);
+                  });
               })
-              .catch(err => reject({
-                message: "Error while putting latest team update to S3. NOT sending to Slack.", 
-                error: err
-              }));
+              .catch(err => {
+                console.error("Error while putting latest team update to S3. NOT sending to Slack.");
+                return reject(err);
+              });
           })
-          .catch(err => reject({
-            message: "Error while getting latest update on S3.", 
-            error: err
-          }));
+          .catch(err => {
+            console.error("Error while getting latest update on S3.");
+            return reject(err);
+          });
       })
-      .catch(err => reject({
-        message: "Error while web scraping.", 
-        error: err
-      }));
+      .catch(err => {
+        console.error("Error while web scraping.");
+        return reject(err);
+      });
   });
 };
 

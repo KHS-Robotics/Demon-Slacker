@@ -2,10 +2,5 @@
 
 const checkForTeamUpdate = require('./src/checkForTeamUpdate');
 checkForTeamUpdate()
-    .catch(err => {
-        console.error(err.message);
-
-        if(err.error) {
-            console.error(err.error);
-        }
-    });
+    .then(updated => console.log('Updated =>', updated))
+    .catch(err => console.error(err));

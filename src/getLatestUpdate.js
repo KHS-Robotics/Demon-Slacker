@@ -19,7 +19,6 @@ function getLatestUpdates() {
     var results = [];
   
     request(options)
-      .catch(err => reject(err))
       .then($ => {
         $('.field-name-body tbody tr:nth-child(4) td ul li a').each((anchorTag, elem) => {
           var title = $(this).text();
@@ -29,6 +28,8 @@ function getLatestUpdates() {
         });
   
         return resolve(JSON.parse(JSON.stringify({ "team_updates": results })));
+      }).catch(err => {
+        return reject(err);
       });
   });
 }
