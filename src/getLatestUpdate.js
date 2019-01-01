@@ -24,11 +24,15 @@ function getLatestUpdates() {
           var title = $(this).text();
           var url = $(this).attr('href');
           
-          results.push({ "title" : title, "url": url });
+          results.push({ 
+            "title": title, 
+            "url": url 
+          });
         });
   
         return resolve(JSON.parse(JSON.stringify({ "team_updates": results })));
-      }).catch(err => {
+      })
+      .catch(err => {
         return reject(err);
       });
   });

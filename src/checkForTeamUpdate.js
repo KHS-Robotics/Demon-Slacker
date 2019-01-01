@@ -1,6 +1,6 @@
 const getLatestUpdate = require("./getLatestUpdate");
-const s3Client = require('./s3Client');
-const sendSlackMessage = require('./sendSlackMessage');
+const S3Client = require('./s3Client');
+const SlackClient = require('./slackClient');
 const _ = require("underscore");
 
 const YEAR = new Date().getFullYear();
@@ -11,7 +11,7 @@ const YEAR = new Date().getFullYear();
  * a messages to Slack and puts the team update
  * to S3.
  */
-function checkForTeamUpdates() {
+function checkForTeamUpdates(config) {
   return new Promise((resolve, reject) => {
     getLatestUpdate()
       .then(scraped => {
@@ -22,7 +22,8 @@ function checkForTeamUpdates() {
             new Error("Scraped team update is empty! Perhaps team updates aren't up yet?")
           );
         }
-        
+
+        let s3Client = new S3Client(config);
         s3Client.getLatestUpdate()
           .then(updateOnS3 => {
             console.log("S3 update:", updateOnS3);
@@ -41,7 +42,9 @@ function checkForTeamUpdates() {
             s3Client.putLatestUpdate(scraped)
               .then(response => {
                 console.log("Sending message to Slack:", message);
-                sendSlackMessage(message)
+
+                let slackClient = new SlackClient(config);
+                slackClient.sendMessage(message)
                   .then(response => {
                     console.log("Successfully sent message to Slack.", response);
                     return resolve(true);
