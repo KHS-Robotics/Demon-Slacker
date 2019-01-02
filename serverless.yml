@@ -2,7 +2,7 @@ service: frcTeamUpdateSlackNotifier
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: prod
+  stage: dev
   region: us-east-1
   iamRoleStatements:
     - Action:

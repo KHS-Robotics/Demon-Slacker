@@ -22,22 +22,24 @@ npm install -g serverless
 # Create Serverless AWS NodeJS Lambda Config
 serverless create -t aws-nodejs
 
-# Deploy Lambda Function
-serverless deploy
+# Deploy Lambda Function - By default
+# the yml is setup to scrape every 15 minutes.
+# You can change this on line 50 of serverless.yml
+serverless deploy --stage prod
 ```
 
 3. [Setup Environment Variables for the Lambda function in the Console.](https://docs.aws.amazon.com/lambda/latest/dg/env_variables.html)
 ```
-1. AWS_ACCESS_KEY_ID
-2. AWS_SECRET_ACCESS_KEY
-3. AWS_REGION
-4. AWS_BUCKET_NAME
-5. LATEST_TEAM_UPDATE_KEY
-6. SLACK_WEBHOOK_URI
+1. FRC_AWS_ACCESS_KEY_ID - the Access Key ID of the IAM user accessing S3
+2. FRC_AWS_SECRET_ACCESS_KEY - the Secret Access Key of the IAM user accessing S3
+3. AWS_REGION - the region of the S3 bucket holding the latest team update
+4. AWS_BUCKET_NAME - the name of the S3 bucket holding the latest team update
+5. LATEST_TEAM_UPDATE_KEY - the latest team update key for the S3 bucket
+6. SLACK_WEBHOOK_URI - the URI of the slack webhook
 ```
 
-### TODO
-1. Remove AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables in lieu of the lambda function's IAM role.
-2. Get the code running using the minumum permissions needed and figure out what those are.
-3. Get the code in an "npm publishable" state.
-4. Possibly using AWS Secret Manager instead of environment variables
+## TODO
+1. Remove FRC_AWS_ACCESS_KEY_ID and FRC_AWS_SECRET_ACCESS_KEY environment variables in lieu of the lambda function's IAM role.
+2. Get the code running using the _minumum_ permissions needed and figure out what those are.
+3. Get the code in an "_npm publishable_" state.
+4. _Possibly_ using AWS Secret Manager instead of environment variables.
