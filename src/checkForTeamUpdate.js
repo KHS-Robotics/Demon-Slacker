@@ -25,7 +25,7 @@ function checkForTeamUpdates(config) {
           );
         }
 
-        let s3Client = new S3Client(config);
+        let s3Client = new S3Client(config.aws);
         s3Client.getLatestUpdate()
           .then(updateOnS3 => {
             console.log("S3 update:", updateOnS3);
@@ -45,7 +45,7 @@ function checkForTeamUpdates(config) {
               .then(response => {
                 console.log("Sending message to Slack:", message);
 
-                let slackClient = new SlackClient(config);
+                let slackClient = new SlackClient(config.slack);
                 slackClient.sendMessage(message)
                   .then(response => {
                     console.log("Successfully sent message to Slack.", response);

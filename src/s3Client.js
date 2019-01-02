@@ -15,8 +15,8 @@ class S3Client {
     constructor(config) {
         s3Client = new AWS.S3({
             credentials: {
-                accessKeyId: config.AWS_ACCESS_KEY_ID,
-                secretAccessKey: config.AWS_SECRET_ACCESS_KEY
+                accessKeyId: config.credentials.AWS_ACCESS_KEY_ID,
+                secretAccessKey: config.credentials.AWS_SECRET_ACCESS_KEY
             },
             region: config.REGION
         });
