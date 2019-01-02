@@ -3,6 +3,8 @@ const S3Client = require('./s3Client');
 const SlackClient = require('./slackClient');
 const _ = require("underscore");
 
+// This is used to generate the proper URL
+// for the combined team updates PDF.
 const YEAR = new Date().getFullYear();
 
 /**

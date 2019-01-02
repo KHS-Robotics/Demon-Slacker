@@ -1,3 +1,4 @@
+// AWS SDK
 const AWS = require('aws-sdk');
 
 // Internal S3 Client Object
@@ -8,7 +9,7 @@ var s3Client;
  */
 class S3Client {
     /**
-     * Creates a new Amazon S3 Client
+     * Creates a new Amazon S3 Client.
      * @param {*} config config
      */
     constructor(config) {
@@ -16,7 +17,8 @@ class S3Client {
             credentials: {
                 accessKeyId: config.AWS_ACCESS_KEY_ID,
                 secretAccessKey: config.AWS_SECRET_ACCESS_KEY
-            }
+            },
+            region: config.REGION
         });
 
         this.getParams = {
