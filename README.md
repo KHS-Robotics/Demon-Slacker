@@ -39,7 +39,7 @@ serverless deploy --stage prod
 ```
 
 ## TODO
-1. Remove FRC_AWS_ACCESS_KEY_ID and FRC_AWS_SECRET_ACCESS_KEY environment variables in lieu of the lambda function's IAM role.
+1. Remove FRC_AWS_ACCESS_KEY_ID and FRC_AWS_SECRET_ACCESS_KEY environment variables in favor of the lambda function's IAM role.
 2. Get the code running using the _minumum_ permissions needed and figure out what those are.
 3. Get the code in an "_npm publishable_" state.
 4. _Possibly_ using AWS Secret Manager instead of environment variables.
