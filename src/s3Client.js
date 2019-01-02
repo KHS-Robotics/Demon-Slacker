@@ -18,7 +18,7 @@ class S3Client {
                 accessKeyId: config.credentials.AWS_ACCESS_KEY_ID,
                 secretAccessKey: config.credentials.AWS_SECRET_ACCESS_KEY
             },
-            region: config.AWS_REGION
+            region: config.FRC_AWS_REGION
         });
 
         this.getParams = {

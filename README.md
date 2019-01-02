@@ -32,7 +32,7 @@ serverless deploy --stage prod
 ```
 1. FRC_AWS_ACCESS_KEY_ID - the Access Key ID of the IAM user accessing S3
 2. FRC_AWS_SECRET_ACCESS_KEY - the Secret Access Key of the IAM user accessing S3
-3. AWS_REGION - the region of the S3 bucket holding the latest team update
+3. FRC_AWS_REGION - the region of the S3 bucket holding the latest team update
 4. AWS_BUCKET_NAME - the name of the S3 bucket holding the latest team update
 5. LATEST_TEAM_UPDATE_KEY - the latest team update key for the S3 bucket
 6. SLACK_WEBHOOK_URI - the URI of the slack webhook
