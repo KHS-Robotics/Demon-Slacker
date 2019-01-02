@@ -41,3 +41,15 @@ jspm_packages
 
 # EC2 PEM files should not be shared
 *.pem
+
+# Serverless
+.serverless
+
+# VS Code
+.vscode
+
+# Mac
+.DS_Store
+
+# Windows
+thumbs.db
