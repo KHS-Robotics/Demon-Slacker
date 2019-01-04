@@ -2,19 +2,24 @@
 Automatically notify your team about an update to the FRC game manual on Slack using Amazon S3 and Lambda.
 
 ## How To Get It Working For Your Team As Is.
-1. Install and setup AWS CLI:
+1. Run `npm install` to install the necessary dependencies.
+
+2. Install and setup AWS CLI:
 ```
 # Install AWS CLI
 pip install awscli
 
-# Configure AWS on your machine
+# Configure AWS if you do not have your 
+# AWS_ACCESS_KEY_ID or AWS_SECRET_ACCESS_KEY
+# environment variable set on your machine.
 aws configure
 
 # Get your IAM user to make sure aws configure worked
+# and/or your environment variables are set correctly.
 aws iam get-user
 ```
 
-2. Install and setup Serverless
+3. Install and setup Serverless
 ```
 # Install Serverless CLI
 npm install -g serverless
@@ -23,12 +28,20 @@ npm install -g serverless
 serverless create -t aws-nodejs
 
 # Deploy Lambda Function - By default
-# the yml is setup to scrape every 15 minutes.
-# You can change this on line 50 of serverless.yml
+# the serverless.yml file is setup to 
+# scrape every 15 minutes. You can change 
+# this on line 50 of serverless.yml.
 serverless deploy --stage prod
+
+# Alternatively you can deploy to a dev
+# version by executing this instead. It creates
+# another Lambda Function that you can use for
+# developing with completely different configuration 
+# values before deploying to prod.
+serverless deploy
 ```
 
-3. [Setup Environment Variables for the Lambda function in the Console.](https://docs.aws.amazon.com/lambda/latest/dg/env_variables.html)
+4. [Setup Environment Variables for the Lambda function in the Console.](https://docs.aws.amazon.com/lambda/latest/dg/env_variables.html)
 ```
 1. FRC_AWS_ACCESS_KEY_ID - the Access Key ID of the IAM user accessing S3
 2. FRC_AWS_SECRET_ACCESS_KEY - the Secret Access Key of the IAM user accessing S3
