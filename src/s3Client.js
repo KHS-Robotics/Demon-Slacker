@@ -44,7 +44,7 @@ class S3Client {
                     if (err.statusCode === 404) {
                         console.log(
                             "Expected S3 file does not exist! Creating one with a blank JSON as its contents:", 
-                            LATEST_TEAM_UPDATE_KEY
+                            putParams.Key
                         );
                         console.log("This might be because this is your first time executing the program.");
 
