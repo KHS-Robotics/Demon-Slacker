@@ -2,13 +2,20 @@
   "name": "frc-team-updates-slack-notifier",
   "version": "2.0.0",
   "description": "scrapes the frc game manual updates page and sends alerts to your slack team via incoming webhook using AWS S3 and Lambda\"",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "KHS-Robotics",
   "license": "MIT",
   "private": true,
+  "repository": {
+    "url": "https://github.com/KHS-Robotics/FRC-Team-Updates-Slack-Notifier.git",
+    "type": "git"
+  },
+  "bugs": {
+    "email": "demonrobotics4342@gmail.com",
+    "url": "https://github.com/KHS-Robotics/FRC-Team-Updates-Slack-Notifier/issues"
+  },
   "dependencies": {
     "aws-sdk": "^2.366.0",
     "cheerio": "^1.0.0-rc.2",
