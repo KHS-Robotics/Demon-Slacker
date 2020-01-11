@@ -3,7 +3,11 @@
   "version": "2.0.0",
   "description": "scrapes the frc game manual updates page and sends alerts to your slack team via incoming webhook using AWS S3 and Lambda\"",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node example.js",
+    "deploy-prod": "serverless deploy --stage prod",
+    "deploy-dev": "serverless deploy",
+    "create-nodejs-aws-lambda": "serverless create -t aws-nodejs"
   },
   "author": "KHS-Robotics",
   "license": "MIT",
@@ -17,10 +21,13 @@
     "url": "https://github.com/KHS-Robotics/FRC-Team-Updates-Slack-Notifier/issues"
   },
   "dependencies": {
-    "aws-sdk": "^2.366.0",
-    "cheerio": "^1.0.0-rc.2",
-    "request-promise": "^4.2.2",
+    "aws-sdk": "^2.601.0",
+    "cheerio": "^1.0.0-rc.3",
+    "request-promise": "^4.2.5",
     "slack-node": "^0.1.8",
-    "underscore": "^1.9.1"
+    "underscore": "^1.9.2"
+  },
+  "devDependencies": {
+    "serverless": "^1.60.5"
   }
 }
