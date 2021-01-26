@@ -1,6 +1,6 @@
 {
   "name": "frc-team-updates-slack-notifier",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "scrapes the frc game manual updates page and sends alerts to your slack team via incoming webhook using AWS S3 and Lambda\"",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
