@@ -20,7 +20,7 @@ function getLatestUpdates() {
   
     request(options)
       .then($ => {
-        $('.field-name-body tbody tr:nth-child(4) td ul li a').each(function(i, elem) {
+        $('.field-name-body tbody tr:nth-child(3) td ul li a').each(function(i, elem) {
           var title = $(this).text();
           var url = $(this).attr('href');
 

@@ -37,7 +37,8 @@ function checkForTeamUpdates(config) {
 
             console.log("New team update detected!");
 
-            var message = "\"" + scraped.team_updates[scraped.team_updates.length-1].title + "\" is posted: " + scraped.team_updates[scraped.team_updates.length-1].url + " . ";
+            var lastestUpdateIndex = 0; // latest update is at the top, if it was at the bottom then would be scraped.team_updates.length-1
+            var message = "\"" + scraped.team_updates[lastestUpdateIndex].title + "\" is posted: " + scraped.team_updates[lastestUpdateIndex].url + ". ";
             message += "All of the team updates can be found at https://firstfrc.blob.core.windows.net/frc" + YEAR + "/Manual/TeamUpdates/TeamUpdates-combined.pdf";
             
             console.log("Putting latest team update to S3.");
