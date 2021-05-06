@@ -25,7 +25,7 @@
     "cheerio": "^1.0.0-rc.3",
     "request-promise": "^4.2.5",
     "slack-node": "^0.1.8",
-    "underscore": "^1.9.2"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "serverless": "^1.60.5"
